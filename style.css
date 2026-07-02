@@ -78,7 +78,7 @@ h1 {
 
 .clef {
   fill: var(--ink);
-  font-family: 'Bravura Text', 'Noto Music', 'Segoe UI Symbol', 'Apple Symbols', serif;
+  font-family: 'Noto Music', serif;
 }
 
 .note-head {
@@ -112,7 +112,6 @@ h1 {
   margin-top: 0.5rem;
 }
 
-.accidental-select,
 .letters {
   display: flex;
   gap: 0.4rem;
@@ -134,17 +133,6 @@ button {
 
 button:hover {
   border-color: var(--accent-light);
-}
-
-.accidental-select button {
-  min-width: 3rem;
-  font-size: 1.3rem;
-}
-
-.accidental-select button.active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
 }
 
 .letters button {

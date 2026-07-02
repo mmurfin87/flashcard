@@ -76,7 +76,3 @@ export function accidentalSymbol(accidental: Accidental): string {
 export function noteLabel(note: NoteSpec): string {
   return `${note.letter}${accidentalSymbol(note.accidental)}${note.octave}`;
 }
-
-export function notesEqual(a: NoteSpec, b: NoteSpec): boolean {
-  return a.letter === b.letter && a.accidental === b.accidental;
-}

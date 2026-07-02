@@ -1,12 +1,4 @@
-import {
-  Accidental,
-  Clef,
-  Letter,
-  NoteSpec,
-  noteLabel,
-  notesEqual,
-  randomNoteForClef,
-} from './notes.js';
+import { Clef, Letter, NoteSpec, noteLabel, randomNoteForClef } from './notes.js';
 import { renderStaff } from './staff.js';
 
 interface Stats {
@@ -21,7 +13,6 @@ const BEST_STREAK_KEY = 'note-flashcards.bestStreak';
 class FlashcardApp {
   private svg: SVGSVGElement;
   private letterButtons: HTMLButtonElement[];
-  private accidentalButtons: HTMLButtonElement[];
   private clefRadios: HTMLInputElement[];
   private feedbackEl: HTMLElement;
   private scoreEl: HTMLElement;
@@ -29,7 +20,6 @@ class FlashcardApp {
   private bestStreakEl: HTMLElement;
   private nextButton: HTMLButtonElement;
 
-  private selectedAccidental: Accidental = 'natural';
   private clefMode: Clef | 'both' = 'both';
   private currentClef: Clef = 'treble';
   private currentNote: NoteSpec;
@@ -44,7 +34,6 @@ class FlashcardApp {
   constructor() {
     this.svg = document.querySelector('#staff') as SVGSVGElement;
     this.letterButtons = Array.from(document.querySelectorAll('[data-letter]'));
-    this.accidentalButtons = Array.from(document.querySelectorAll('[data-accidental]'));
     this.clefRadios = Array.from(document.querySelectorAll('input[name="clef-mode"]'));
     this.feedbackEl = document.querySelector('#feedback') as HTMLElement;
     this.scoreEl = document.querySelector('#score') as HTMLElement;
@@ -56,7 +45,6 @@ class FlashcardApp {
     this.currentNote = randomNoteForClef(this.currentClef);
 
     this.bindEvents();
-    this.updateAccidentalUI();
     this.updateStatsUI();
     this.draw();
   }
@@ -69,13 +57,6 @@ class FlashcardApp {
   }
 
   private bindEvents(): void {
-    for (const button of this.accidentalButtons) {
-      button.addEventListener('click', () => {
-        this.selectedAccidental = button.dataset.accidental as Accidental;
-        this.updateAccidentalUI();
-      });
-    }
-
     for (const button of this.letterButtons) {
       button.addEventListener('click', () => {
         this.handleGuess(button.dataset.letter as Letter);
@@ -97,15 +78,6 @@ class FlashcardApp {
       const key = event.key.toUpperCase();
       if (['A', 'B', 'C', 'D', 'E', 'F', 'G'].includes(key)) {
         this.handleGuess(key as Letter);
-      } else if (key === '#' || key === '+') {
-        this.selectedAccidental = 'sharp';
-        this.updateAccidentalUI();
-      } else if (event.key === '-') {
-        this.selectedAccidental = 'flat';
-        this.updateAccidentalUI();
-      } else if (event.key === '0' || event.key === 'n') {
-        this.selectedAccidental = 'natural';
-        this.updateAccidentalUI();
       } else if (event.code === 'Space') {
         event.preventDefault();
         this.newQuestion();
@@ -113,17 +85,10 @@ class FlashcardApp {
     });
   }
 
-  private updateAccidentalUI(): void {
-    for (const button of this.accidentalButtons) {
-      button.classList.toggle('active', button.dataset.accidental === this.selectedAccidental);
-    }
-  }
-
   private handleGuess(letter: Letter): void {
     if (this.awaitingNext) return;
 
-    const guess: NoteSpec = { letter, accidental: this.selectedAccidental, octave: this.currentNote.octave };
-    const isCorrect = notesEqual(guess, this.currentNote);
+    const isCorrect = letter === this.currentNote.letter;
 
     this.stats.total += 1;
     if (isCorrect) {
