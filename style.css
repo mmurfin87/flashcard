@@ -1,0 +1,191 @@
+:root {
+  --bg: #f7f5f0;
+  --ink: #2b2620;
+  --accent: #8a4b3b;
+  --accent-light: #c98a6f;
+  --line: #2b2620;
+  --correct: #2f7d4f;
+  --incorrect: #b3423a;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.app {
+  width: 100%;
+  max-width: 560px;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  margin-top: 0;
+  color: #6b6357;
+}
+
+.clef-select {
+  border: none;
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  margin: 1rem 0;
+  padding: 0;
+}
+
+.clef-select legend {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.staff-wrapper {
+  background: #fffdf9;
+  border: 1px solid #e2ddd0;
+  border-radius: 12px;
+  padding: 0.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+#staff {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.staff-line {
+  stroke: var(--line);
+  stroke-width: 1.5;
+}
+
+.ledger-line {
+  stroke: var(--line);
+  stroke-width: 1.5;
+}
+
+.clef {
+  fill: var(--ink);
+  font-family: 'Bravura Text', 'Noto Music', 'Segoe UI Symbol', 'Apple Symbols', serif;
+}
+
+.note-head {
+  fill: var(--ink);
+}
+
+.accidental {
+  fill: var(--accent);
+  font-weight: bold;
+}
+
+.feedback {
+  min-height: 1.5em;
+  font-weight: 600;
+  margin: 0.75rem 0;
+}
+
+.feedback.correct {
+  color: var(--correct);
+}
+
+.feedback.incorrect {
+  color: var(--incorrect);
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.accidental-select,
+.letters {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+button {
+  font-family: inherit;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border: 1px solid #d8d2c4;
+  background: #fff;
+  color: var(--ink);
+  border-radius: 8px;
+  padding: 0.5rem 0.9rem;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+button:hover {
+  border-color: var(--accent-light);
+}
+
+.accidental-select button {
+  min-width: 3rem;
+  font-size: 1.3rem;
+}
+
+.accidental-select button.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.letters button {
+  min-width: 2.75rem;
+  font-weight: 600;
+}
+
+.next-button {
+  margin-top: 0.25rem;
+  background: #efe9dd;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.stats > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #6b6357;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.hint {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: #6b6357;
+}
+
+.hint kbd {
+  background: #efe9dd;
+  border-radius: 4px;
+  padding: 0.1rem 0.35rem;
+  font-family: inherit;
+}

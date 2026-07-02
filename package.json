@@ -1,0 +1,14 @@
+{
+  "name": "note-flashcards",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A flashcard app for practicing musical note recognition on treble and bass clefs.",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "serve": "npx --yes http-server . -p 8080 -c-1"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}

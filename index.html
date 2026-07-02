@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Note Flashcards</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <h1>Note Flashcards</h1>
+    <p class="subtitle">Name the note shown on the staff.</p>
+
+    <fieldset class="clef-select">
+      <legend>Clef</legend>
+      <label><input type="radio" name="clef-mode" value="both" checked /> Both</label>
+      <label><input type="radio" name="clef-mode" value="treble" /> Treble</label>
+      <label><input type="radio" name="clef-mode" value="bass" /> Bass</label>
+    </fieldset>
+
+    <div class="staff-wrapper">
+      <svg id="staff" aria-label="Musical staff showing a note to identify"></svg>
+    </div>
+
+    <p id="feedback" class="feedback" role="status" aria-live="polite"></p>
+
+    <div class="controls">
+      <div class="accidental-select" role="group" aria-label="Accidental">
+        <button type="button" data-accidental="flat">&#9837;</button>
+        <button type="button" data-accidental="natural" class="active">&#9838;</button>
+        <button type="button" data-accidental="sharp">&#9839;</button>
+      </div>
+
+      <div class="letters" role="group" aria-label="Note letter">
+        <button type="button" data-letter="A">A</button>
+        <button type="button" data-letter="B">B</button>
+        <button type="button" data-letter="C">C</button>
+        <button type="button" data-letter="D">D</button>
+        <button type="button" data-letter="E">E</button>
+        <button type="button" data-letter="F">F</button>
+        <button type="button" data-letter="G">G</button>
+      </div>
+
+      <button type="button" id="next-button" class="next-button">Skip &rarr;</button>
+    </div>
+
+    <div class="stats">
+      <div><span class="stat-label">Score</span><span id="score">0 / 0</span></div>
+      <div><span class="stat-label">Streak</span><span id="streak">0</span></div>
+      <div><span class="stat-label">Best streak</span><span id="best-streak">0</span></div>
+    </div>
+
+    <p class="hint">
+      Tip: press a letter key (A&ndash;G) to guess. Use <kbd>+</kbd>/<kbd>-</kbd> to pick
+      sharp/flat and <kbd>0</kbd> for natural. <kbd>Space</kbd> skips.
+    </p>
+  </main>
+
+  <script type="module" src="dist/app.js"></script>
+</body>
+</html>
