@@ -34,6 +34,11 @@ jobs:
           mkdir -p site
           cp index.html style.css site/
           cp -r dist site/dist
+          # Cache-bust every module URL (the entry script tag plus each
+          # relative ES module import) with the commit SHA, so browsers
+          # can't keep serving a stale dist/*.js after a deploy.
+          sed -i "s/dist\/app\.js\"/dist\/app.js?v=${GITHUB_SHA}\"/" site/index.html
+          sed -i -E "s/from '(\.\/[a-zA-Z0-9_-]+\.js)'/from '\1?v=${GITHUB_SHA}'/" site/dist/*.js
 
       - uses: actions/configure-pages@v5
 
