@@ -71,7 +71,7 @@ const BASS_ANCHOR_FONT_Y = -644;
 function drawTrebleClef(svg: SVGSVGElement): void {
   const gLineY = yForPosition(2); // G4, 2nd line from bottom
   const originX = 82;
-  const originY = gLineY - TREBLE_ANCHOR_FONT_Y * CLEF_SCALE;
+  const originY = gLineY - TREBLE_ANCHOR_FONT_Y * CLEF_SCALE - 2 * LINE_GAP;
   const g = svgEl('g', { transform: `translate(${originX} ${originY}) scale(${CLEF_SCALE})` });
   g.appendChild(svgEl('path', { d: TREBLE_PATH_D, class: 'clef' }));
   svg.appendChild(g);
